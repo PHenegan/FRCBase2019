@@ -7,18 +7,18 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the build.gradle file in the
- * project.
- */
 public class Robot extends IterativeRobot {
+  WPI_TalonSRX fr;
+  WPI_TalonSRX fl;
+  WPI_TalonSRX br;
+  WPI_TalonSRX bl;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -26,7 +26,19 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void robotInit() {
-    }
+    //These are placeholder values
+    Joystick driveStick = new Joystick(0);
+    
+
+    //These are placeholder value
+    fr = new WPI_TalonSRX(0);
+    fl = new WPI_TalonSRX(1);
+    br = new WPI_TalonSRX(2);
+    bl = new WPI_TalonSRX(3);
+    
+
+
+  }
 
   /**
    * This function is called every robot packet, no matter the mode. Use
