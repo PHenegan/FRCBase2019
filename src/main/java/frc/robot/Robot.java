@@ -25,9 +25,10 @@ public class Robot extends IterativeRobot {
   Joystick driveStick;
   JoystickButton speedLimiter;
 
-  double leftPower = 0;
-  double rightPower = 0;
-  double speedLimit = 0.5;
+  double leftPower;
+  double rightPower;
+
+  double speedLimit;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -36,14 +37,17 @@ public class Robot extends IterativeRobot {
   @Override
   public void robotInit() {
     //These are placeholder values
-     driveStick = new Joystick(0);
-     speedLimiter = new JoystickButton(driveStick, 0);
-
-    //These are placeholder value
     fr = new WPI_TalonSRX(0);
     fl = new WPI_TalonSRX(1);
     br = new WPI_TalonSRX(2);
     bl = new WPI_TalonSRX(3);
+  }
+
+  @Override
+  public void teleopInit() {
+    //These are placeholder values
+    driveStick = new Joystick(0);
+    speedLimiter = new JoystickButton(driveStick, 0);
   }
 
   /**
