@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
   @Override
   public void robotPeriodic() {
     
-    //I get that this is bad, I was trying to show stuff to Harry without actually looking into how commands work with the other methods
+    //I get that this is bad, I was trying to show stuff to Harry without actually looking into how the Command class works with the other methods
     if (speedLimiter.get()) {
       speedLimit = 0.5;
     }
