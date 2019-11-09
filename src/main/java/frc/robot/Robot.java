@@ -44,7 +44,6 @@ public class Robot extends IterativeRobot {
     fl = new WPI_TalonSRX(1);
     br = new WPI_TalonSRX(2);
     bl = new WPI_TalonSRX(3);
-    
   }
 
   /**
