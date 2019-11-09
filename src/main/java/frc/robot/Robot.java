@@ -11,6 +11,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,6 +21,13 @@ public class Robot extends IterativeRobot {
   WPI_TalonSRX fl;
   WPI_TalonSRX br;
   WPI_TalonSRX bl;
+  
+  Joystick driveStick;
+  JoystickButton speedLimiter;
+
+  double leftPower = 0;
+  double rightPower = 0;
+  double speedLimit = 0.5;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -27,8 +36,8 @@ public class Robot extends IterativeRobot {
   @Override
   public void robotInit() {
     //These are placeholder values
-    Joystick driveStick = new Joystick(0);
-    
+     driveStick = new Joystick(0);
+     speedLimiter = new JoystickButton(driveStick, 0);
 
     //These are placeholder value
     fr = new WPI_TalonSRX(0);
@@ -36,8 +45,6 @@ public class Robot extends IterativeRobot {
     br = new WPI_TalonSRX(2);
     bl = new WPI_TalonSRX(3);
     
-
-
   }
 
   /**
@@ -50,6 +57,25 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void robotPeriodic() {
+    
+    //I get that this is bad, I was trying to show stuff to Harry without actually looking into how commands work with the other methods
+    if (speedLimiter.get()) {
+      speedLimit = 0.5;
+    }
+    else {
+      speedLimit = 1;
+    }
+
+    leftPower = driveStick.getY() + driveStick.getX();
+    rightPower = driveStick.getY() - driveStick.getX();
+
+    
+
+    fr.set(speedLimit * rightPower);
+    br.set(speedLimit * rightPower);
+    fl.set(speedLimit * leftPower);
+    bl.set(speedLimit * leftPower);
+
   }
 
   /**
